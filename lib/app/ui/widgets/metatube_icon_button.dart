@@ -5,12 +5,14 @@ class MetatubeIconButton extends StatefulWidget {
   final void Function()? onPressed;
   final Icon icon;
   final Color? color;
+  final Color? disabledColor;
 
   const MetatubeIconButton({
     super.key,
     required this.icon,
     required this.onPressed,
     this.color,
+    this.disabledColor,
   });
 
   @override
@@ -25,6 +27,7 @@ class _MetatubeIconButtonState extends State<MetatubeIconButton> {
       splashRadius: 20,
       splashColor: AppTheme.accent,
       color: widget.color ?? AppTheme.medium,
+      disabledColor: widget.disabledColor,
       icon: widget.icon,
     );
   }
