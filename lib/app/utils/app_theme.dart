@@ -11,4 +11,5 @@ class AppTheme {
 
   static const TextStyle inputStyle = TextStyle(color: light, fontSize: 20);
   static const TextStyle hintStyle = TextStyle(color: medium);
+  static const TextStyle counterStyle = TextStyle(color: medium, fontSize: 14);
 }
