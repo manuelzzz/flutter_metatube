@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:metatube/app/ui/widgets/metatube_icon_button.dart';
 import 'package:metatube/app/utils/app_theme.dart';
+import 'package:metatube/app/utils/snackbar_utils.dart';
 
 class MetatubeTextField extends StatefulWidget {
   final int maxLength;
@@ -28,6 +31,11 @@ class _MetatubeTextFieldState extends State<MetatubeTextField> {
     super.dispose();
   }
 
+  void copyToClipboard(BuildContext context, String text) {
+    Clipboard.setData(ClipboardData(text: text));
+    SnackbarUtils.showSnackBar(context, Icons.content_copy, 'Copied text');
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -42,6 +50,14 @@ class _MetatubeTextFieldState extends State<MetatubeTextField> {
       decoration: InputDecoration(
         hintStyle: AppTheme.hintStyle,
         hintText: widget.hintText,
+        suffixIcon: MetatubeIconButton(
+          onPressed: widget.controller.text.isNotEmpty
+              ? () => copyToClipboard(context, widget.controller.text)
+              : null,
+          icon: const Icon(Icons.content_copy_rounded),
+          color: AppTheme.accent,
+          disabledColor: AppTheme.medium,
+        ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: AppTheme.accent,
