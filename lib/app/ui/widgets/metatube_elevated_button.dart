@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:metatube/app/utils/app_theme.dart';
 
-class MetatubeElevatedButton extends StatelessWidget {
+class MetatubeElevatedButton extends StatefulWidget {
   final void Function()? onPressed;
   final Widget child;
 
@@ -12,16 +12,21 @@ class MetatubeElevatedButton extends StatelessWidget {
   });
 
   @override
+  State<MetatubeElevatedButton> createState() => _MetatubeElevatedButtonState();
+}
+
+class _MetatubeElevatedButtonState extends State<MetatubeElevatedButton> {
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: widget.onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: AppTheme.accent,
         foregroundColor: AppTheme.dark,
         disabledBackgroundColor: AppTheme.disableBackgroundColor,
         disabledForegroundColor: AppTheme.disableForegroundColor,
       ),
-      child: child,
+      child: widget.child,
     );
   }
 }
