@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MetatubeElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => _homeController.newFile(context),
                   child: const Text('New File'),
                 ),
                 Row(

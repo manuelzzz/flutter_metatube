@@ -99,4 +99,17 @@ class HomeController {
       }
     }
   }
+
+  void newFile(BuildContext context) {
+    _selectedFile = null;
+    titleController.clear();
+    descriptionController.clear();
+    tagsController.clear();
+
+    SnackbarUtils.showSnackBar(
+      context,
+      Icons.file_upload,
+      'New file created',
+    );
+  }
 }
