@@ -60,4 +60,43 @@ class HomeController {
       }
     }
   }
+
+  void loadFile(context) async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+      if (result != null) {
+        File file = File(result.files.single.path!);
+        _selectedFile = file;
+
+        final fileContent = await file.readAsString();
+        final lines = fileContent.split('\n\n');
+        titleController.text = lines[1];
+        descriptionController.text = lines[3];
+        tagsController.text = lines[5];
+
+        if (context.mounted) {
+          SnackbarUtils.showSnackBar(
+            context,
+            Icons.upload_file,
+            'File uploaded',
+          );
+        }
+      } else {
+        SnackbarUtils.showSnackBar(
+          context,
+          Icons.error_rounded,
+          'No file selected',
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        SnackbarUtils.showSnackBar(
+          context,
+          Icons.error,
+          'File not saved',
+        );
+      }
+    }
+  }
 }
