@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     MetatubeIconButton(
                       icon: const Icon(Icons.file_upload),
-                      onPressed: () {},
+                      onPressed: () => _homeController.loadFile(context),
                     ),
                     const VerticalDivider(width: 8),
                     MetatubeIconButton(
@@ -118,7 +118,9 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 MetatubeElevatedButton(
-                  onPressed: () {},
+                  onPressed: _homeController.fieldsNotEmpty
+                      ? () => _homeController.saveContent(context)
+                      : null,
                   child: const Text('Save File'),
                 ),
               ],
