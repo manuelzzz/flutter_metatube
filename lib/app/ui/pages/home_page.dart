@@ -81,13 +81,13 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   children: [
                     MetatubeIconButton(
-                      icon: const Icon(Icons.file_upload),
                       onPressed: () => _homeController.loadFile(context),
+                      icon: const Icon(Icons.file_upload),
                     ),
                     const VerticalDivider(width: 8),
                     MetatubeIconButton(
+                      onPressed: () => _homeController.newDirectory(context),
                       icon: const Icon(Icons.folder),
-                      onPressed: () {},
                     ),
                   ],
                 ),

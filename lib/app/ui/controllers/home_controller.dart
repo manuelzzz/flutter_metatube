@@ -94,7 +94,7 @@ class HomeController {
         SnackbarUtils.showSnackBar(
           context,
           Icons.error,
-          'File not saved',
+          'File not uploaded',
         );
       }
     }
@@ -111,5 +111,29 @@ class HomeController {
       Icons.file_upload,
       'New file created',
     );
+  }
+
+  void newDirectory(BuildContext context) async {
+    try {
+      String? directory = await FilePicker.platform.getDirectoryPath();
+      _selectedDirectory = directory!;
+      _selectedFile = null;
+
+      if (context.mounted) {
+        SnackbarUtils.showSnackBar(
+          context,
+          Icons.folder,
+          'New folder selected',
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        SnackbarUtils.showSnackBar(
+          context,
+          Icons.error,
+          'No folder selected',
+        );
+      }
+    }
   }
 }
